@@ -1,176 +1,435 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html class="light" lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PTA適正化推進委員会 | 研究サイト</title>
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="favicon.png">
-<link rel="stylesheet" href="styles.css">
-<meta name="description" content="PTA適正化推進委員会の研究サイト。一次資料・法制度・教育委員会回答を横断し、PTA制度を整理する。">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>PTA適正化推進委員会</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#001736",
+            primaryContainer: "#002b5b",
+            primarySoft: "#7594ca",
+            bg: "#f7fafc",
+            paper: "#ffffff",
+            line: "#dde3ea",
+            muted: "#5b6677",
+            gold: "#cca729",
+            goldSoft: "#eac243",
+            redYouTube: "#dc2626"
+          },
+          fontFamily: {
+            headline: ["Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
+          },
+          boxShadow: {
+            soft: "0 20px 50px rgba(0, 23, 54, 0.12)"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined{
+      font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+      vertical-align:middle;
+    }
+    body{
+      font-family:'Inter',sans-serif;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-bg text-slate-900">
 
-<header class="header">
-  <div class="container header-inner">
-    <div class="brand-wrap">
-      <img class="brand-mark" src="assets/popc-logo.png" alt="PTA適正化推進委員会ロゴ">
-      <div class="brand-title">PTA研究プラットフォーム<span class="brand-sub">PTA Research Platform</span></div>
-    </div>
-    <div class="header-controls">
-      <button class="nav-toggle" type="button" aria-label="メニュー" aria-expanded="false" onclick="document.body.classList.toggle('nav-open'); this.setAttribute('aria-expanded', document.body.classList.contains('nav-open') ? 'true' : 'false');">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav">
-  <a href="index.html" class="active">ホーム</a>
-  <a href="structure.html">読む順番</a>
-  <a href="law-map.html">法制度</a>
-  <a href="board-replies.html">教育委員会向け</a>
-  <a href="archive.html">全国資料館</a>
-  <a href="research-note.html">研究ノート</a>
-  <a href="timeline.html">制度史</a>
-  <a href="guide.html">Google Sites入口</a>
-</nav>
-      <div class="org-tag">PTA適正化推進委員会</div>
-    </div>
-  </div>
-</header>
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between min-h-[76px] gap-4">
+        <a href="index.html" class="min-w-0">
+          <div class="text-[12px] sm:text-[14px] font-black tracking-tight text-primary uppercase leading-tight">
+            PTA OPTIMIZATION PROMOTION COMMITTEE
+          </div>
+        </a>
 
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-bold">
+          <a class="text-primary border-b-2 border-gold pb-1" href="index.html">Home</a>
+          <a class="text-slate-600 hover:text-primary transition-colors" href="guide.html">Guides</a>
+          <a class="text-slate-600 hover:text-primary transition-colors" href="research-note.html">Resources</a>
+          <a class="text-slate-600 hover:text-primary transition-colors" href="timeline.html">Blog</a>
+          <a class="text-slate-600 hover:text-primary transition-colors" href="board-replies.html">Contact</a>
+        </nav>
 
-<section class="hero">
-  <div class="container hero-inner hero-simple">
-    <div class="hero-copy">
-      <div class="label">PTA Research Platform</div>
-      <h1>PTA制度を、<br>一次資料と法制度で<span class="yellow">再構成</span>する。</h1>
-      <p class="hero-tagline">慣行ではなく根拠で読む。</p>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="eyebrow">Project frame</div>
-    <h2>新しいサイトの骨格</h2>
-    <p class="intro">現サイトにはすでに「適正化ガイド」「全国の事例」「教育委員会回答」「法体系」といった主要区分があり、Google Sites側には「教育委員会」「課題と提言」「研究・資料」などの大きな蓄積があります。新サイトではその資産を、読み手が迷わない順番で束ね直しています。</p>
-    <div class="card-grid">
-      <article class="card">
-        <div class="num">01</div>
-        <h3>まず全体像をつかむ</h3>
-        <p>PTAが何者で、何が問題で、どこから読むべきかを案内します。最初の到着点は「学校とPTAの境界」です。</p>
-        <a href="structure.html">読む順番へ</a>
-      </article>
-      <article class="card">
-        <div class="num">02</div>
-        <h3>法制度で位置づける</h3>
-        <p>民法・個人情報保護法・地方公務員法・社会教育法などを、論点別に交差させて整理します。</p>
-        <a href="law-map.html">法制度マップへ</a>
-      </article>
-      <article class="card">
-        <div class="num">03</div>
-        <h3>行政実務に返す</h3>
-        <p>教育委員会や学校が使いがちな説明に対し、どこで論理が崩れるのかを条文と制度で示します。</p>
-        <a href="board-replies.html">教育委員会向けページへ</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section alt">
-  <div class="container twocol">
-    <div class="long-copy">
-      <div class="eyebrow">Central thesis</div>
-      <h2>このサイトの中心命題</h2>
-      <p>PTAは、学校の附属機関ではありません。一般的な整理として、PTAは保護者と教職員が任意に組織する社会教育関係団体であり、学校とは別の主体として扱われます。だからこそ、学校が保有する個人情報、勤務時間中の教職員の労務、学校徴収金の仕組み、公費と私費の境界には、はっきりした法的線引きが必要になります。</p>
-      <p>問題は、「独立している」と説明しながら、実務では学校が深く関与していることです。入会申込書がないまま会費を集め、学校名簿を前提に会員を把握し、学校文書にPTA文書を混在させ、管理職や教職員が日常的にPTA事務を代行しているなら、その運用は独立団体論と両立しません。</p>
-      <p>本サイトは、その矛盾を感情論ではなく、一次資料・教育委員会回答・法制度・全国比較で可視化します。</p>
-    </div>
-    <div>
-      <div class="highlight">
-        <h3>教育委員会向けの中核パーツも実装</h3>
-        <p><strong>「委任があれば校務化できる」「無償ならよい」「慣行だから直ちに違法ではない」</strong>といった説明に対して、職務専念義務・社会教育法・個人情報保護・公費私費分離の観点から順番に崩すページを独立させました。</p>
-        <p>学校によるPTA関与を、単なるマナー論や慣行論ではなく、<strong>所掌・権限・労務・個人情報・財務</strong>の複合論点として扱います。</p>
-        <div class="hero-actions"><a class="btn primary" href="board-replies.html">論証ページを開く</a></div>
-      </div>
-      <div class="photo-card" style="margin-top:22px">
-        <img src="assets/yokomusubi-card.png" alt="よこむすび登録カード">
-        <p>横浜市の団体登録導線も、ヘッダー・フッター・資料館ページに統合しました。</p>
+        <div class="flex items-center gap-3">
+          <a href="law-map.html" class="hidden sm:inline-flex bg-primaryContainer text-white px-4 py-2 rounded-md text-sm font-bold hover:opacity-90 transition">
+            Legal Room
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </header>
 
-<section class="section">
-  <div class="container">
-    <div class="eyebrow">Main pages</div>
-    <h2>このまま公開できる主要ページ</h2>
-    <div class="split">
-      <div class="panel">
-        <span class="kicker">読む順番</span>
-        <h3>structure.html</h3>
-        <p>はじめて来た人が、最短で「PTAは何か」「学校とどこで分かれるか」に到達できる案内ページです。</p>
+  <main class="pt-[76px]">
+
+    <!-- Hero -->
+    <section class="relative overflow-hidden bg-primaryContainer">
+      <div class="absolute inset-0">
+        <img
+          src="assets/current-site-mobile.png"
+          alt=""
+          class="w-full h-full object-cover opacity-[0.12]"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-primaryContainer via-primaryContainer/95 to-primaryContainer/75"></div>
       </div>
-      <div class="panel">
-        <span class="kicker">法制度</span>
-        <h3>law-map.html</h3>
-        <p>加入・個人情報・学校関与・徴収実務を、法令の束として整理した法制度マップです。</p>
+
+      <div class="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-10 xl:gap-14 items-start">
+
+          <!-- Left -->
+          <div class="xl:col-span-5">
+            <span class="inline-block px-3 py-1 bg-gold text-primary text-[11px] font-bold tracking-[0.18em] uppercase mb-6 rounded">
+              PTA LEGAL REFERENCE
+            </span>
+
+            <h1 class="text-white font-black tracking-tight leading-[1.05] text-[40px] sm:text-[54px] lg:text-[66px]">
+              PTAは、自由で独立した<br>
+              <span class="text-yellow-300">社会教育関係団体</span>です。
+            </h1>
+
+            <p class="mt-6 text-primarySoft text-base sm:text-lg leading-8 max-w-2xl">
+              PTAが法律上「自由で独立した社会教育関係団体」であることを踏まえ、
+              学校とPTAの関係を一次資料・法令・通知に基づいて整理し、
+              各学校PTAがより自立した運営を行うための検討材料を示します。
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="#current-issues" class="inline-flex items-center justify-center bg-white text-primaryContainer px-6 py-4 rounded-md font-bold text-base hover:bg-slate-100 transition">
+                現状と課題を読む
+              </a>
+              <a href="law-map.html" class="inline-flex items-center justify-center border border-white/30 text-white px-6 py-4 rounded-md font-bold text-base hover:bg-white/10 transition">
+                法的根拠を確認する
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Card -->
+          <div class="xl:col-span-7">
+            <div class="bg-white/10 border border-white/15 backdrop-blur-md rounded-2xl p-6 sm:p-8 lg:p-10 text-white shadow-soft">
+              <div class="flex flex-col gap-2 mb-6">
+                <p class="text-xs uppercase tracking-[0.2em] text-yellow-300 font-bold">
+                  PTA Optimization Promotion Committee
+                </p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                  PTA適正化推進委員会
+                </h2>
+              </div>
+
+              <h3 id="current-issues" class="text-2xl sm:text-3xl font-bold text-yellow-300 mb-6">
+                PTAの現状と課題
+              </h3>
+
+              <div class="space-y-5 text-[15px] sm:text-base leading-8 text-slate-100">
+                <p>
+                  現在、全国の小・中・高等学校でPTAは「保護者と教職員が任意で作る団体」として、
+                  子どもたちの健全育成を支える大切な役割を担っています。
+                </p>
+
+                <p>
+                  しかし実際の現場では、学校とPTAが別の団体であることが十分に意識されず、
+                  「学校とPTAの境界線」が曖昧なまま活動が進められるケースが少なくありません。
+                  特に、学校がPTA会費の徴収・管理・会計・経理、配布物の配布回収までを一手に担っている現状が、
+                  全国的に見られます。これにより保護者の自主性が反映されにくくなり、
+                  保護者間の分断や役員のなり手不足、公平性の欠如といった問題が深刻化しています。
+                </p>
+
+                <p>
+                  文部科学省が推進する働き方改革では、「学校・教師が担う業務」を3分類として役割分担を明確にしています。<br>
+                  ① 基本的には学校以外が担うべき業務<br>
+                  ② 学校の業務だが必ずしも教師が担う必要のない業務<br>
+                  ③ 教師の業務だが負担軽減が可能な業務<br>
+                  PTA関連業務（会費徴収・管理など）は①に位置づけられていますが、
+                  多くの学校ではその趣旨が十分に活かされていません。
+                </p>
+
+                <p>
+                  本委員会は、これらの実態を明らかにするため、全国1700の教育委員会に対し法的見解照会を実施し、
+                  約50自治体・全校を対象に公文書開示請求を行いました。これらの一次資料をもとに、
+                  学校とPTAの関係を法令・通知などの観点から整理・検証しています。
+                </p>
+
+                <p>
+                  PTAが法律上「自由で独立した社会教育関係団体」であることを踏まえ、
+                  各学校PTAがより自立した運営ができる方向性を検討するための参考資料としてまとめています。
+                  詳細な調査結果や一次資料などは本HPにすべて掲載しています。
+                  ご自身の教育委員会・学校のPTA状況と照らし合わせてご覧いただき、
+                  ご意見・ご相談をお寄せいただければ幸いです。
+                </p>
+
+                <p>
+                  最新の調査結果や資料は、X（旧Twitter）で随時発信しています。
+                </p>
+              </div>
+
+              <div class="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="https://x.com/jjjqqqxxx0852"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-3 bg-black text-white px-5 py-3 rounded-md font-bold hover:opacity-90 transition"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18.244 2H21l-6.56 7.49L22.5 22h-6.84l-5.36-6.89L3.8 22H1l7.04-8.04L1.5 2h7l4.84 6.26L18.244 2z"/>
+                  </svg>
+                  Xを見る
+                </a>
+
+                <a
+                  href="https://www.youtube.com/channel/UCSCZwKdv2k1ZCcstUA2HZZg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-3 bg-redYouTube text-white px-5 py-3 rounded-md font-bold hover:bg-red-700 transition"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M23.5 6.2s-.2-1.7-.9-2.5c-.9-.9-1.9-.9-2.4-1C16.8 2.3 12 2.3 12 2.3s-4.8 0-8.2.4c-.5.1-1.5.1-2.4 1C.7 4.5.5 6.2.5 6.2S0 8.2 0 10.1v1.8c0 1.9.5 3.9.5 3.9s.2 1.7.9 2.5c.9.9 2.1.9 2.6 1C6.4 20 12 20 12 20s4.8 0 8.2-.4c.5-.1 1.5-.1 2.4-1 .7-.8.9-2.5.9-2.5s.5-2 .5-3.9v-1.8c0-1.9-.5-3.9-.5-3.9zM9.6 14.6V7.8l6.4 3.4-6.4 3.4z"/>
+                  </svg>
+                  YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div class="panel">
-        <span class="kicker">教育委員会向け</span>
-        <h3>board-replies.html</h3>
-        <p>行政実務の説明を、条文・制度・論理の順に検証し、改善可能な所掌を示します。</p>
+    </section>
+
+    <!-- Target Guide -->
+    <section class="py-20 sm:py-24 bg-paper px-4 sm:px-6 lg:px-8">
+      <div class="max-w-screen-2xl mx-auto">
+        <div class="mb-14">
+          <h2 class="text-3xl sm:text-4xl font-black text-primary tracking-tight mb-4">
+            対象別最適化ガイド
+          </h2>
+          <p class="text-muted max-w-3xl text-base sm:text-lg leading-8">
+            それぞれの立場からPTAのあり方を見直し、本来の目的である「子供たちの健やかな成長」に注力するための視点を整理します。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <a href="guide.html" class="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition">
+            <div class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-primary text-3xl">family_restroom</span>
+            </div>
+            <h3 class="text-2xl font-bold text-primary mb-4">保護者の皆様</h3>
+            <p class="text-muted leading-8 mb-6">
+              入退会の自由、説明のあり方、会費徴収、個人情報の扱いなど、保護者として確認すべき論点を整理します。
+            </p>
+            <span class="inline-flex items-center text-primary font-bold gap-2">
+              詳細を見る <span class="material-symbols-outlined">arrow_forward</span>
+            </span>
+          </a>
+
+          <a href="structure.html" class="group bg-primaryContainer p-8 rounded-2xl text-white shadow-sm hover:-translate-y-1 hover:shadow-lg transition">
+            <div class="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-white text-3xl">gavel</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-yellow-300">PTA役員の皆様</h3>
+            <p class="text-slate-200 leading-8 mb-6">
+              規約、総会、会計、役員選出、学校との距離感など、持続可能で自立した運営の基礎を整理します。
+            </p>
+            <span class="inline-flex items-center text-white font-bold gap-2">
+              詳細を見る <span class="material-symbols-outlined">arrow_forward</span>
+            </span>
+          </a>
+
+          <a href="law-map.html" class="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition">
+            <div class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-primary text-3xl">school</span>
+            </div>
+            <h3 class="text-2xl font-bold text-primary mb-4">学校関係者様</h3>
+            <p class="text-muted leading-8 mb-6">
+              学校とPTAの法的位置づけ、会費徴収、名簿提供、施設利用など、学校側の関与を法的観点から整理します。
+            </p>
+            <span class="inline-flex items-center text-primary font-bold gap-2">
+              詳細を見る <span class="material-symbols-outlined">arrow_forward</span>
+            </span>
+          </a>
+
+          <a href="board-replies.html" class="group bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition">
+            <div class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+            </div>
+            <h3 class="text-2xl font-bold text-primary mb-4">教育委員会様</h3>
+            <p class="text-muted leading-8 mb-6">
+              PTAそのものではなく、学校側の不適切関与をどのように是正すべきかを、通知・条文・実務の順で整理します。
+            </p>
+            <span class="inline-flex items-center text-primary font-bold gap-2">
+              詳細を見る <span class="material-symbols-outlined">arrow_forward</span>
+            </span>
+          </a>
+        </div>
       </div>
-      <div class="panel">
-        <span class="kicker">資料館</span>
-        <h3>archive.html</h3>
-        <p>全国数千件規模の文書アーカイブを、メタデータ付で整理する入口ページです。</p>
+    </section>
+
+    <!-- Legal Block -->
+    <section class="py-20 sm:py-24 bg-slate-100 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-screen-2xl mx-auto">
+        <div class="bg-white rounded-2xl p-8 sm:p-10 lg:p-14 relative overflow-hidden shadow-sm">
+          <div class="absolute left-0 top-0 h-full w-2 bg-gold"></div>
+
+          <div class="max-w-5xl">
+            <span class="text-gold font-label text-sm font-bold tracking-[0.18em] uppercase block mb-6">
+              Legal Reference
+            </span>
+
+            <blockquote class="text-2xl sm:text-3xl lg:text-4xl font-medium text-primary leading-[1.6] italic mb-8">
+              「PTAは、児童及び生徒の福祉を増進することを目的として、
+              保護者及び教職員が任意に組織する団体である。」
+            </blockquote>
+
+            <div class="border-t border-slate-200 pt-6 flex flex-col md:flex-row md:items-center gap-6">
+              <div class="flex-1">
+                <p class="text-xs uppercase tracking-[0.18em] text-slate-500 font-bold mb-2">Source Citation</p>
+                <p class="text-primary font-bold">
+                  文部科学省通知・社会教育法の位置づけを踏まえた整理
+                </p>
+              </div>
+              <a href="law-map.html" class="inline-flex items-center gap-2 px-5 py-3 bg-yellow-100 text-primary rounded-md font-bold hover:bg-yellow-200 transition">
+                <span class="material-symbols-outlined">description</span>
+                原文を確認する
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="py-20 sm:py-24 bg-paper px-4 sm:px-6 lg:px-8">
+      <div class="max-w-screen-2xl mx-auto">
+        <div class="flex items-center justify-between gap-4 mb-14">
+          <h2 class="text-3xl sm:text-4xl font-black text-primary tracking-tight">
+            最新の活動・レポート
+          </h2>
+          <a href="research-note.html" class="text-primary font-bold border-b-2 border-primary/20 hover:border-primary transition">
+            全て表示
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <article class="group">
+            <div class="aspect-[16/10] rounded-xl overflow-hidden mb-5 bg-slate-200">
+              <img src="assets/yokomusubi-card.png" alt="よこむすび" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            </div>
+            <p class="text-gold text-xs font-bold tracking-[0.18em] uppercase mb-2">Activities</p>
+            <h3 class="text-xl font-bold text-primary mb-3 leading-8">
+              横浜市地域活動紹介サイトへの掲載
+            </h3>
+            <p class="text-muted leading-8 text-sm">
+              横浜市の地域活動に取り組む団体として紹介されています。地域活動支援・ネットワーク・行政との接点の一つとして位置づけています。
+            </p>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[16/10] rounded-xl overflow-hidden mb-5 bg-slate-200">
+              <img src="assets/popc-logo.png" alt="PTA適正化推進委員会" class="w-full h-full object-contain bg-white p-8 transition-transform duration-500 group-hover:scale-105" />
+            </div>
+            <p class="text-gold text-xs font-bold tracking-[0.18em] uppercase mb-2">Research</p>
+            <h3 class="text-xl font-bold text-primary mb-3 leading-8">
+              一次資料ベースの制度整理
+            </h3>
+            <p class="text-muted leading-8 text-sm">
+              教育委員会回答、公文書開示資料、学校配布文書、法令・通知をもとに、学校とPTAの関係を検証しています。
+            </p>
+          </article>
+
+          <article class="group">
+            <div class="aspect-[16/10] rounded-xl overflow-hidden mb-5 bg-slate-200">
+              <div class="w-full h-full flex items-center justify-center bg-primaryContainer text-white">
+                <div class="text-center px-6">
+                  <div class="text-4xl font-black mb-2">X / YouTube</div>
+                  <div class="text-slate-200 text-sm leading-7">
+                    最新の調査結果や資料、発信内容を随時更新しています
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-gold text-xs font-bold tracking-[0.18em] uppercase mb-2">Updates</p>
+            <h3 class="text-xl font-bold text-primary mb-3 leading-8">
+              最新情報の継続発信
+            </h3>
+            <p class="text-muted leading-8 text-sm">
+              調査経過、制度論点、公開資料、問題提起などをSNS・動画で継続的に発信し、サイト本体と連動させています。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white py-16">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12">
+        <div class="lg:col-span-5">
+          <div class="text-xl font-black uppercase tracking-tight mb-4">
+            PTA OPTIMIZATION PROMOTION COMMITTEE
+          </div>
+          <p class="text-slate-300 leading-8 text-sm max-w-xl">
+            学校とPTAの境界を、一次資料・法令・通知・教育委員会回答に基づいて整理し、
+            より適正で持続可能なPTA運営を検討するための研究サイトです。
+          </p>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-8 text-sm">
+          <div class="flex flex-col gap-3">
+            <span class="font-bold text-xs uppercase tracking-[0.18em] text-slate-400">Navigation</span>
+            <a class="text-slate-300 hover:text-white transition-colors" href="index.html">Home</a>
+            <a class="text-slate-300 hover:text-white transition-colors" href="guide.html">Guides</a>
+            <a class="text-slate-300 hover:text-white transition-colors" href="research-note.html">Research</a>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <span class="font-bold text-xs uppercase tracking-[0.18em] text-slate-400">Contents</span>
+            <a class="text-slate-300 hover:text-white transition-colors" href="law-map.html">Law Map</a>
+            <a class="text-slate-300 hover:text-white transition-colors" href="structure.html">Structure</a>
+            <a class="text-slate-300 hover:text-white transition-colors" href="archive.html">Archive</a>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <span class="font-bold text-xs uppercase tracking-[0.18em] text-slate-400">External</span>
+            <a class="text-slate-300 hover:text-white transition-colors" href="https://x.com/jjjqqqxxx0852" target="_blank" rel="noopener noreferrer">X</a>
+            <a class="text-slate-300 hover:text-white transition-colors" href="https://www.youtube.com/channel/UCSCZwKdv2k1ZCcstUA2HZZg" target="_blank" rel="noopener noreferrer">YouTube</a>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <span class="font-bold text-xs uppercase tracking-[0.18em] text-slate-400">Contact</span>
+            <a class="text-slate-300 hover:text-white transition-colors" href="board-replies.html">Board Replies</a>
+            <a class="text-slate-300 hover:text-white transition-colors" href="timeline.html">Timeline</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-blue-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+        <p class="text-slate-400">© 2026 PTA適正化推進委員会. All Rights Reserved.</p>
+        <div class="flex flex-wrap gap-6 text-slate-300">
+          <a href="law-map.html" class="hover:text-white transition-colors">Legal Reference</a>
+          <a href="archive.html" class="hover:text-white transition-colors">Archive</a>
+          <a href="guide.html" class="hover:text-white transition-colors">Guide</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-
-<footer class="footer">
-  <div class="container footer-inner">
-    <div>
-      <h3>PTA適正化推進委員会</h3>
-      <p>学校とPTAの境界を、慣行ではなく一次資料と法制度にもとづいて整理する研究・発信サイトです。任意加入・個人情報・学校関与・徴収実務を中心に、制度の全体像を見える形に再構成します。</p>
-    </div>
-    <div>
-      <h3>主な入口</h3>
-      <ul>
-        <li><a href="structure.html">最初に読む順番</a></li>
-        <li><a href="board-replies.html">教育委員会向け論証</a></li>
-        <li><a href="archive.html">全国PTA資料館</a></li>
-        <li><a href="law-map.html">法制度マップ</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>関連リンク</h3>
-      <ul>
-        <li><a href="https://sites.google.com/view/ptatekiseika/%E3%83%9B%E3%83%BC%E3%83%A0">Google Sites 入口</a></li>
-        <li><a href="mailto:ptatekiseikaiinnkai@gmail.com">ptatekiseikaiinnkai@gmail.com</a></li>
-        <li>横浜市磯子区 / 070-9012-7772</li>
-      </ul>
-      <a class="footer-card" href="https://yokomusubi.city.yokohama.lg.jp/organizations/detail/f69c7ad2-cf21-4dfa-87bb-9c891874eb6b/">
-        <span class="footer-card-kicker">横浜市 市民活動団体登録</span>
-        <strong>よこむすび掲載団体</strong>
-        <span>団体紹介ページを見る</span>
-      </a>
-    </div>
-  </div>
-  <div class="container footer-bottom">© 2026 PTA適正化推進委員会 / GitHub Pages 用全面再構成版</div>
-</footer>
-
-<script>
-document.addEventListener("click",function(e){
-  const inside=e.target.closest(".header-controls")||e.target.closest(".nav-toggle");
-  if(!inside && window.innerWidth<=980){
-    document.body.classList.remove("nav-open");
-    const btn=document.querySelector(".nav-toggle");
-    if(btn) btn.setAttribute("aria-expanded","false");
-  }
-});
-window.addEventListener("resize",function(){ if(window.innerWidth>980) document.body.classList.remove("nav-open"); });
-</script>
 </body>
 </html>

@@ -4,27 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PTA適正化推進委員会</title>
-  <meta name="description" content="PTAの現状と課題、法制度、会費徴収、個人情報、教育委員会の所掌などを一次資料にもとづいて整理する研究サイトです。">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="PTAの位置づけ、学校との境界、会費徴収、個人情報、教育委員会の所掌を一次資料ベースで整理する研究サイトです。">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="site-brand" aria-label="PTA適正化推進委員会 ホーム">
-        <span class="site-brand-en">PTA OPTIMIZATION PROMOTION COMMITTEE</span>
+        <span class="site-brand-mini">研究サイト</span>
+        <span class="site-brand-main">PTA適正化推進委員会</span>
       </a>
 
-      <input type="checkbox" id="nav-check" class="nav-check">
-      <label for="nav-check" class="nav-toggle" aria-label="メニューを開く">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
         <span></span><span></span><span></span>
-      </label>
+      </button>
 
-      <nav class="site-nav" aria-label="グローバルナビゲーション">
+      <nav class="site-nav" id="site-nav" aria-label="グローバルナビゲーション">
         <ul class="nav-list">
           <li><a href="index.html" class="active">ホーム</a></li>
 
           <li class="has-dropdown">
-            <a href="#">ガイド</a>
+            <button type="button" class="dropdown-toggle">ガイド</button>
             <ul class="dropdown">
               <li><a href="structure.html">制度構造</a></li>
               <li><a href="law-map.html">法体系</a></li>
@@ -34,46 +35,44 @@
           </li>
 
           <li class="has-dropdown">
-            <a href="#">資料・論点</a>
+            <button type="button" class="dropdown-toggle">資料・発信</button>
             <ul class="dropdown">
               <li><a href="reports.html">活動・レポート</a></li>
               <li><a href="documents.html">一次資料</a></li>
               <li><a href="archive.html">資料館</a></li>
+              <li><a href="https://www.youtube.com/channel/UCSCZwKdv2k1ZCcstUA2HZZg" target="_blank" rel="noopener noreferrer">YouTube</a></li>
             </ul>
           </li>
 
-          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="blog.html">論考</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
       </nav>
-
-      <a class="header-cta" href="contact.html">ご連絡</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-overlay"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">法令・通知・一次資料にもとづく整理</p>
+          <p class="eyebrow">法令・通知・一次資料にもとづく制度整理</p>
           <h1>PTAは、自由で独立した<br>社会教育関係団体です。</h1>
           <p class="hero-summary">
-            PTAは学校の内部組織ではなく、保護者と教職員が任意で構成する団体として位置づけられるのが一般的です。<br>
+            PTAは学校の内部組織ではなく、保護者と教職員が任意で構成する団体として理解されるのが一般的です。
             そのため、学校とPTAの境界、会費徴収、個人情報提供、教職員の関与のあり方は、制度上ていねいに切り分けて検討する必要があります。
           </p>
           <div class="hero-actions">
-            <a href="structure.html" class="btn btn-primary">直下に続く本文へ</a>
-            <a href="reports.html" class="btn btn-secondary">活動・報告を見る</a>
+            <a href="#lead" class="btn btn-primary">本文を読む</a>
+            <a href="reports.html" class="btn btn-secondary">活動・レポートを見る</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="lead-section">
+    <section class="lead-section" id="lead">
       <div class="container">
-        <div class="lead-card">
-          <div class="lead-text">
+        <div class="lead-layout">
+          <article class="lead-text-block">
             <p class="section-label">PTAの現状と課題</p>
             <h2>学校とPTAの境界が曖昧なまま運用されている実態を、一次資料から整理します。</h2>
 
@@ -82,8 +81,10 @@
               しかし実際の現場では、学校とPTAが別の団体であることが十分に意識されず、制度上の境界が曖昧なまま運用されている例が少なくありません。
             </p>
 
+            <div class="inline-photo photo-one" aria-hidden="true"></div>
+
             <p>
-              とくに、学校がPTA会費の徴収、管理、会計処理、配布物の回収まで担っているケースは全国的に見られます。
+              とくに、学校がPTA会費の徴収、管理、会計処理、配布物の配布・回収まで担っているケースは全国的に見られます。
               その結果、任意加入であるはずの団体について、保護者が自由に判断しにくい構造が生じやすくなっています。
               この問題は単なる運営上の不手際ではなく、
               <a href="law-map.html">法令上の整理</a>、
@@ -97,26 +98,31 @@
               具体的には、PTAが社会教育関係団体としてどのように説明されてきたのか、学校がどこまで関与できるのか、教育委員会がどの場面で是正責任を負うのかを、検証可能な形で示します。
             </p>
 
+            <div class="inline-photo photo-two" aria-hidden="true"></div>
+
             <p>
               関連する外部公開先として、
               <a href="https://www.youtube.com/channel/UCSCZwKdv2k1ZCcstUA2HZZg" target="_blank" rel="noopener noreferrer">YouTube</a>
               では解説や記録を発信し、
               <a href="https://x.com/" target="_blank" rel="noopener noreferrer">X</a>
               では最新の発信を整理しています。
-              また、横浜市の市民活動情報ページについては、下部フッター内の団体登録欄から確認できます。
+              また、横浜市の市民活動情報ページは、フッターの団体登録欄から確認できます。
             </p>
-          </div>
+          </article>
 
-          <aside class="lead-aside">
-            <div class="photo-card tall-photo photo-a">
-              <div class="photo-badge">制度と運用</div>
+          <aside class="lead-side-panel">
+            <div class="side-card side-photo">
+              <div>
+                <p class="side-card-label">写真・制度整理</p>
+                <h3>運用実態と制度上の境界を並行して確認する構成に変更しました。</h3>
+              </div>
             </div>
-            <div class="photo-card wide-photo photo-b">
-              <div class="photo-badge">一次資料ベース</div>
-            </div>
-            <div class="mini-links">
-              <a href="https://www.youtube.com/channel/UCSCZwKdv2k1ZCcstUA2HZZg" target="_blank" rel="noopener noreferrer">YouTubeを見る</a>
-              <a href="https://x.com/" target="_blank" rel="noopener noreferrer">Xを見る</a>
+
+            <div class="side-card side-links">
+              <p class="side-card-label">外部発信</p>
+              <a href="https://www.youtube.com/channel/UCSCZwKdv2k1ZCcstUA2HZZg" target="_blank" rel="noopener noreferrer">YouTubeへ</a>
+              <a href="https://x.com/" target="_blank" rel="noopener noreferrer">Xへ</a>
+              <a href="documents.html">一次資料を見る</a>
             </div>
           </aside>
         </div>
@@ -129,7 +135,7 @@
           <div>
             <p class="section-label">対外別適正化ガイド</p>
             <h2>論点ごとに整理した入口</h2>
-            <p class="section-note">法的位置づけの確認から、会費、個人情報、教育委員会の所掌まで、主題別に確認できます。</p>
+            <p class="section-note">保護者、PTA役員、学校関係者、教育委員会ごとに、確認すべき論点へ直接進めます。</p>
           </div>
         </div>
 
@@ -168,12 +174,12 @@
     <section class="quote-section">
       <div class="container">
         <div class="quote-card">
-          <p class="quote-label">LEGAL REFERENCE</p>
+          <p class="quote-label">法的位置づけ</p>
           <blockquote>
             「PTAは、児童及び生徒の福祉を増進することを目的として、保護者及び教職員が任意に組織する団体である」
           </blockquote>
           <div class="quote-meta">
-            <span>資料例：PTA関係資料・社会教育関係団体に関する公開資料</span>
+            <span>社会教育関係団体に関する公開資料等を手がかりに整理</span>
             <a href="documents.html" class="quote-link">資料を確認する</a>
           </div>
         </div>
@@ -227,18 +233,18 @@
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div class="footer-main">
+      <section class="footer-main">
         <h2>PTA適正化推進委員会</h2>
         <p>学校とPTAの境界を、一次資料・法令・通知・公開文書にもとづいて整理するための研究・発信サイトです。</p>
 
         <div class="footer-contact">
-          <p>横浜市磯子区岡村8-17-5-301</p>
-          <p><a href="mailto:info@ptaorg.com">info@ptaorg.com</a></p>
-          <p><a href="tel:07090127772">070-9012-7772</a></p>
+          <p><strong>所在地</strong> 横浜市磯子区岡村8-17-5-301</p>
+          <p><strong>メール</strong> <a href="mailto:info@ptaorg.com">info@ptaorg.com</a></p>
+          <p><strong>電話</strong> <a href="tel:07090127772">070-9012-7772</a></p>
         </div>
-      </div>
+      </section>
 
-      <div class="footer-links">
+      <section class="footer-links">
         <h3>サイト案内</h3>
         <ul>
           <li><a href="index.html">ホーム</a></li>
@@ -247,29 +253,30 @@
           <li><a href="privacy.html">個人情報</a></li>
           <li><a href="pta-fee.html">会費徴収</a></li>
         </ul>
-      </div>
+      </section>
 
-      <div class="footer-card-wrap">
+      <section class="footer-registry">
         <h3>団体登録</h3>
-        <a class="yokomusubi-card" href="https://yokomusubi.city.yokohama.lg.jp/organizations/detail/f69c7ad2-cf21-4dfa-87bb-9c891874eb6b/" target="_blank" rel="noopener noreferrer">
-          <div class="yokomusubi-badge">横浜市市民活動情報</div>
-          <div class="yokomusubi-title">よこむすび 団体登録ページ</div>
-          <div class="yokomusubi-text">
-            PTA適正化推進委員会<br>
-            横浜市磯子区岡村8-17-5-301<br>
-            登録情報を見る
+        <a class="registry-card" href="https://yokomusubi.city.yokohama.lg.jp/organizations/detail/f69c7ad2-cf21-4dfa-87bb-9c891874eb6b/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/yokomusubi-card.png" alt="よこむすび団体登録カード">
+          <div class="registry-card-text">
+            <p class="registry-name">PTA適正化推進委員会</p>
+            <p>横浜市市民活動情報・よこむすび 登録ページ</p>
+            <p><strong>団体登録番号</strong> f69c7ad2-cf21-4dfa-87bb-9c891874eb6b</p>
           </div>
         </a>
-      </div>
+      </section>
     </div>
 
     <div class="container footer-bottom">
       <p>© 2026 PTA適正化推進委員会</p>
       <div class="footer-bottom-links">
-        <a href="privacy.html">個人情報保護</a>
+        <a href="privacy.html">個人情報</a>
         <a href="contact.html">お問い合わせ</a>
       </div>
     </div>
   </footer>
+
+  <script src="js/menu.js"></script>
 </body>
 </html>

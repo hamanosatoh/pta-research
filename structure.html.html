@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PTA問題 完全構造マップ | PTA適正化推進委員会</title>
+<meta name="description" content="PTA問題を、加入・会費・学校徴収金・第二の財布・教職員事務・個人情報・教育委員会の所掌まで一気通貫で整理した制度構造マップ。">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ページ固有スタイル */
+.map-node {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 2px 2px 0;
+  padding: 28px 32px;
+  position: relative;
+}
+
+.map-node + .map-node {
+  margin-top: 2px;
+}
+
+.map-node--zero { border-left-color: #8fa8c8; }
+.map-node--final {
+  background: var(--navy);
+  border: 1px solid rgba(201,168,76,.3);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 2px 2px 0;
+}
+
+.node-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.node-layer {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.map-node--final .node-layer {
+  color: var(--gold-light);
+}
+
+.node-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.3;
+}
+
+.map-node--final .node-title {
+  color: #fff;
+}
+
+.node-body {
+  font-size: 15.5px;
+  line-height: 1.95;
+  color: var(--ink-mid);
+  margin-bottom: 14px;
+  max-width: 900px;
+}
+
+.map-node--final .node-body {
+  color: rgba(255,255,255,.8);
+}
+
+.node-laws {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.node-box {
+  background: rgba(201,168,76,.07);
+  border: 1px solid rgba(201,168,76,.22);
+  border-radius: 2px;
+  padding: 12px 18px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.75;
+}
+
+.node-box strong {
+  color: var(--navy);
+  display: block;
+  font-weight: 700;
+  margin-bottom: 4px;
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+
+.connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  position: relative;
+}
+
+.connector::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--border), var(--gold), var(--border));
+}
+
+.connector-label {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 2px 10px;
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--ink-soft);
+  z-index: 1;
+}
+
+.chain-text {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 15px;
+  line-height: 2.1;
+  color: var(--navy-soft);
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 28px 36px;
+}
+
+.chain-text .step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chain-text .step-arrow {
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.chain-text .step-text {
+  font-size: 15px;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">
+        <div class="brand-crest">適</div>
+        <div class="brand-text">
+          <span class="brand-jp">PTA適正化推進委員会</span>
+          <span class="brand-en">PTA Research Platform</span>
+        </div>
+      </a>
+      <nav class="site-nav" id="site-nav">
+        <a href="index.html">ホーム</a>
+        <a href="structure.html">制度と構造</a>
+        <a href="law-map.html">法体系</a>
+        <a href="board-replies.html">教育委員会向け</a>
+        <a href="archive.html">資料館</a>
+        <a href="essays.html">論考</a>
+        <a href="guide.html">ガイド</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle">☰</button>
+    </div>
+  </div>
+</header>
+
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-kicker">Complete Structure Map</div>
+    <h1>PTA問題 完全構造マップ</h1>
+    <p class="page-hero-desc">
+      PTA問題は、単なる役員負担や保護者間の摩擦ではない。任意団体と公的機関の境界が、加入・会費・学校徴収金・財政・教職員事務・個人情報・教育委員会の各段階で慣行によって曖昧化していることから生じる、複合的な制度問題である。このページはその全体連鎖を一枚で示す入口として機能する。
+    </p>
+  </div>
+</div>
+
+
+<main>
+  <section class="section section--cream">
+    <div class="container">
+
+      <!-- 読む順番 -->
+      <div class="section-header">
+        <span class="section-eyebrow">Reading Order</span>
+        <h2>制度連鎖の構造</h2>
+        <p class="section-lead">
+          以下に、PTA問題が社会的問題から制度問題へと接続する連鎖を示す。
+          第0層から第6層へと読み進めることで、問題の全体像が把握できる。
+        </p>
+      </div>
+
+      <!-- 第0層 -->
+      <div class="map-node map-node--zero">
+        <div class="node-header">
+          <span class="node-layer">第0層</span>
+          <span class="node-title">現実の問題状況</span>
+        </div>
+        <p class="node-body">
+          共働き世帯の増加、介護・看護の需要、ひとり親家庭、長時間労働・遠距離通勤など、家庭を取り巻く状況は多様化している。こうした中でも多くの学校のPTA活動は平日昼間の参加を前提とし、くじ引きや輪番による役員選出が続く。物理的・家庭的事情から参加できない保護者への圧力と、保護者間の分断が構造的に発生している。
+        </p>
+        <div class="node-box">
+          <strong>現れる現象</strong>
+          役員決めのくじ引き・輪番制 ／ 参加できない家庭への圧力 ／ 保護者間の摩擦と分断 ／ 教員の働き方改革との矛盾
+        </div>
+        <p class="node-body" style="margin-top:14px; margin-bottom:0;">
+          文部科学省の教師の働き方改革では、業務を「教師が担うべき業務」「教師以外も担える業務」「学校以外が担うべき業務」の三分類に整理しており、学校徴収金事務の負担がこの文脈でも問題視されている。
+        </p>
+      </div>
+
+      <div class="connector"><span class="connector-label">制度問題へ接続</span></div>
+
+      <!-- 第1層 -->
+      <div class="map-node">
+        <div class="node-header">
+          <span class="node-layer">第1層</span>
+          <span class="node-title">加入問題</span>
+        </div>
+        <p class="node-body">
+          PTAが任意団体である以上、加入は民法上の契約として成立する必要がある。民法第522条は、契約が申込みと承諾の意思表示の合致によって成立すると定める。入学書類との一体配布、オプトアウト方式、みなし加入は、この要件を満たさない可能性がある。
+        </p>
+        <p class="node-body">
+          学校という権威ある機関が配布する書類に加入手続が混入することで、権力勾配の下で事実上の強制が生じやすい環境が形成される。形式的な同意が取得されたとしても、実質的な自由意思が担保されているとは言いがたい状況がある。
+        </p>
+        <div class="node-laws">
+          <span class="law-tag">民法522条（契約の成立）</span>
+          <span class="law-tag">民法703条（不当利得）</span>
+          <span class="law-tag">消費者契約法</span>
+        </div>
+      </div>
+
+      <div class="connector"><span class="connector-label">↓</span></div>
+
+      <!-- 第2層 -->
+      <div class="map-node">
+        <div class="node-header">
+          <span class="node-layer">第2層</span>
+          <span class="node-title">PTA会費</span>
+        </div>
+        <p class="node-body">
+          加入が不明確なまま会費が徴収されれば、会費負担の法的根拠も曖昧になる。加入問題はそのまま会費問題へと接続する。民法第703条（不当利得）の問題が生じる可能性がある。
+        </p>
+        <div class="node-box">
+          <strong>主要論点</strong>
+          会費の発生根拠 ／ 未加入者・非会員への負担請求の問題 ／ 会費横領事件と管理主体の曖昧さ
+        </div>
+      </div>
+
+      <div class="connector"><span class="connector-label">↓</span></div>
+
+      <!-- 第3層 -->
+      <div class="map-node">
+        <div class="node-header">
+          <span class="node-layer">第3層</span>
+          <span class="node-title">学校徴収金制度</span>
+        </div>
+        <p class="node-body">
+          多くの学校では、給食費・教材費・PTA会費などが「学校徴収金」として一括処理されている。しかし「学校徴収金」は法律用語ではなく、実務上の便宜的総称にすぎない。給食費（学校活動）とPTA会費（任意団体）は本来性質が異なり、同一の徴収システムへの混入によって法的区別が形骸化する。
+        </p>
+        <div class="node-laws">
+          <span class="law-tag">学校徴収金（非法定概念）</span>
+          <span class="law-tag">私費会計</span>
+          <span class="law-tag">団体徴収金</span>
+        </div>
+      </div>
+
+      <div class="connector"><span class="connector-label">↓</span></div>
+
+      <!-- 第3.5層 -->
+      <div class="map-node">
+        <div class="node-header">
+          <span class="node-layer">第3.5層</span>
+          <span class="node-title">地方財政問題 ── 第二の財布化</span>
+        </div>
+        <p class="node-body">
+          PTA資金が学校設備購入・学校運営の補完財源として機能すると、公費とは別に予算統制の外で「第二の財布」が形成される。本来公費で担うべき領域をPTA資金・保護者負担で穴埋めする統治構造であり、行政の財政責任の外部化という問題を内包する。
+        </p>
+        <p class="node-body">
+          地方自治法第232条の2は普通地方公共団体が補助・寄付をする際に公益上の必要を要件とする。また地方財政法第4条の5は、実質的強制力を持つ一律徴収が割り当て寄付に当たる可能性を示している。
+        </p>
+        <div class="node-laws">
+          <span class="law-tag">地方自治法232条の2</span>
+          <span class="law-tag">地方財政法4条の5</span>
+          <span class="law-tag">寄付・利益供与</span>
+          <span class="law-tag">第二の財布化</span>
+        </div>
+      </div>
+
+      <div class="connector"><span class="connector-label">↓</span></div>
+
+      <!-- 第4層 -->
+      <div class="map-node">
+        <div class="node-header">
+          <span class="node-layer">第4層</span>
+          <span class="node-title">教職員のPTA業務</span>
+        </div>
+        <p class="node-body">
+          学校徴収金や団体会費の処理を学校職員が担うと、会費集計・会計・文書配布・役員調整・名簿管理などのPTA内部事務が学校業務に流れ込む。地方公務員法第35条は、職員が勤務時間中に職務遂行に注意力のすべてを用いる義務（職務専念義務）を定める。
+        </p>
+        <p class="node-body">
+          1964年の自治省行政実例は、PTAなど任意団体の事務は「地方公共団体がなすべき責を有する職務」に含まれないと整理する。文科省も2012年通知でこれを問題視している。「委任があれば校務化できる」という説明に対しては、学校教育法上の校務概念と社会教育法第12条の行政不介入原則から制度的な検討が必要になる。
+        </p>
+        <div class="node-laws">
+          <span class="law-tag">地方公務員法35条（職務専念義務）</span>
+          <span class="law-tag">地方公務員法38条（兼業）</span>
+          <span class="law-tag">自治省行政実例（1964）</span>
+          <span class="law-tag">校務分掌</span>
+        </div>
+      </div>
+
+      <div class="connector"><span class="connector-label">↓</span></div>
+
+      <!-- 第5層 -->
+      <div class="map-node">
+        <div class="node-header">
+          <span class="node-layer">第5層</span>
+          <span class="node-title">個人情報問題</span>
+        </div>
+        <p class="node-body">
+          PTA運営には保護者名簿・連絡先・口座情報・役員候補者情報が必要になるが、これらは学校が保有する情報である。公立学校は個人情報保護法上の地方公共団体等として規律されるため、学校からPTAへの提供は第三者提供にあたる。本人同意なき提供は原則として認められない。
+        </p>
+        <p class="node-body">
+          個人情報保護委員会は2025年の資料で、学校とPTA間の個人情報のやり取りについて注意を要する具体的事例を列挙している。非会員の情報をPTAが取得するためには学校名簿との突合が必要だが、非会員はPTAへの同意を与えていないため、その取得根拠は理論上成立しない。
+        </p>
+        <div class="node-laws">
+          <span class="law-tag">個人情報保護法</span>
+          <span class="law-tag">第三者提供</span>
+          <span class="law-tag">本人同意の原則</span>
+          <span class="law-tag">非会員情報取得不可能性</span>
+        </div>
+      </div>
+
+      <div class="connector"><span class="connector-label">↓</span></div>
+
+      <!-- 第6層 -->
+      <div class="map-node">
+        <div class="node-header">
+          <span class="node-layer">第6層</span>
+          <span class="node-title">教育委員会の所掌</span>
+        </div>
+        <p class="node-body">
+          PTA内部は任意団体の自治に属するため、教育委員会が直接介入することはできない。しかし、学校職員の服務・学校保有情報の管理・学校徴収金制度の運用・学校名義での文書配布・学校施設の使用条件はいずれも教育委員会の所掌に属する。
+        </p>
+        <p class="node-body">
+          「PTAの問題だから関われない」という整理は、所掌の範囲についての誤解を含む。学校によるPTA関与の適正化は、教育委員会が正面から対応しうる行政課題である。
+        </p>
+        <div class="node-box">
+          <strong>整理の原則</strong>
+          PTA内部 ＝ 任意団体の自治　／　学校関与の適正化 ＝ 教育委員会の所掌
+        </div>
+        <div class="node-laws" style="margin-top:14px;">
+          <span class="law-tag">地方教育行政法</span>
+          <span class="law-tag">社会教育法12条</span>
+          <span class="law-tag">国家賠償法</span>
+        </div>
+      </div>
+
+      <div class="connector"><span class="connector-label">結論へ</span></div>
+
+      <!-- 最終ノード -->
+      <div class="map-node map-node--final">
+        <div class="node-header">
+          <span class="node-layer">結論</span>
+          <span class="node-title">制度的連鎖の全体像</span>
+        </div>
+        <p class="node-body">
+          PTA問題は、単なる役員負担や運営上の不満ではない。任意団体と公的機関の境界が、加入・会費・財政・事務・情報・行政責任の各段階で慣行によって曖昧化している制度問題である。感情論でも運動論でもなく、法令・行政文書・一次資料によってこの構造を整理し、制度の本来の姿に立ち戻ること。
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 制度連鎖チャート -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Chain Diagram</span>
+        <h2>制度連鎖の概観</h2>
+      </div>
+
+      <div class="chain-text">
+        <div class="step"><span class="step-arrow">●</span><span class="step-text">社会環境の変化（共働き・介護・長時間労働）</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">PTA活動への参加困難</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">役員決め問題・保護者間の分断</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">PTAは任意団体　→　加入は契約問題（民法・消費者契約法）</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">PTA会費の発生根拠が曖昧になる</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">学校徴収金制度への混入（非法定概念による区別の形骸化）</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">寄付・第二の財布化（地方自治法・地方財政法）</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">教職員によるPTA事務　→　職務専念義務（地方公務員法35条）</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">学校保有情報のPTAへの提供　→　第三者提供（個人情報保護法）</span></div>
+        <div class="step"><span class="step-arrow">↓</span><span class="step-text">教育委員会の所掌と行政責任（地方教育行政法）</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 次に読む -->
+  <section class="section section--cream">
+    <div class="container" style="text-align:center;">
+      <div class="rule" style="margin-bottom:32px;"><span class="rule-label">Next Steps</span></div>
+      <p style="color:var(--ink-soft); margin-bottom:28px; font-size:16px;">各論点の詳細は以下のページで読めます</p>
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="law-map.html" class="btn btn--gold">PTA法体系マップ</a>
+        <a href="board-replies.html" class="btn btn--outline" style="border-color:var(--border); color:var(--navy);">教育委員会向け法的整理</a>
+        <a href="structure.html" class="btn btn--outline" style="border-color:var(--border); color:var(--navy);">制度と構造（散文）</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>PTA適正化推進委員会</h3>
+        <p>学校とPTAの境界を、慣行ではなく一次資料・法令・行政文書にもとづいて整理する研究サイト。</p>
+        <a href="mailto:info@ptaorg.com" class="mail">✉ info@ptaorg.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>研究ページ</h4>
+        <ul>
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="structure.html">制度と構造</a></li>
+          <li><a href="law-map.html">法体系マップ</a></li>
+          <li><a href="board-replies.html">教育委員会向け</a></li>
+          <li><a href="archive.html">資料館</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>資料・論考</h4>
+        <ul>
+          <li><a href="essays.html">論考</a></li>
+          <li><a href="research-note.html">研究ノート</a></li>
+          <li><a href="guide.html">適正化ガイド</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>団体情報</h4>
+        <a class="yokomusubi-card"
+           href="https://yokomusubi.city.yokohama.lg.jp/organizations/detail/f69c7ad2-cf21-4dfa-87bb-9c891874eb6b/"
+           target="_blank" rel="noopener">
+          <span class="yk-kicker">横浜市市民活動団体登録</span>
+          <span class="yk-name">PTA適正化推進委員会</span>
+          <span class="yk-sub">よこむすび掲載団体</span>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PTA適正化推進委員会</span>
+      <div class="footer-bottom-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">免責事項</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    toggle.textContent = nav.classList.contains('open') ? '✕' : '☰';
+  });
+</script>
+</body>
+</html>
